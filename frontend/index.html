@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Securin Recipes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+  <div class="max-w-7xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">Securin Recipes</h1>
+
+    <div class="grid md:grid-cols-5 gap-3 mb-4">
+      <input id="fTitle" class="border rounded-lg p-2" placeholder="Search title"/>
+      <input id="fCuisine" class="border rounded-lg p-2" placeholder="Cuisine"/>
+      <input id="fTime" class="border rounded-lg p-2" placeholder="Max total time (min)" type="number"/>
+      <input id="fCalories" class="border rounded-lg p-2" placeholder="Max calories" type="number"/>
+      <div class="flex gap-2">
+        <input id="fRatingMin" class="border rounded-lg p-2 w-1/2" placeholder="Min ★" type="number" min="0" max="5" step="0.1"/>
+        <select id="sort" class="border rounded-lg p-2 w-1/2">
+          <option value="rating_desc">Rating ↓</option>
+          <option value="rating_asc">Rating ↑</option>
+          <option value="time_asc">Time ↑</option>
+          <option value="time_desc">Time ↓</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3 mb-4">
+      <button id="btnSearch" class="bg-blue-600 text-white px-4 py-2 rounded-xl shadow">Search</button>
+      <label class="text-sm">Page size:
+        <select id="limit" class="border rounded-lg p-2">
+          <option>15</option>
+          <option selected>20</option>
+          <option>30</option>
+          <option>50</option>
+        </select>
+      </label>
+      <span id="count" class="text-sm text-gray-600"></span>
+    </div>
+
+    <div class="overflow-x-auto bg-white rounded-2xl shadow">
+      <table class="min-w-full" id="tbl">
+        <thead class="bg-gray-100 text-left text-sm">
+          <tr>
+            <th class="py-2 px-3">Title</th>
+            <th class="py-2 px-3">Cuisine</th>
+            <th class="py-2 px-3">Total Time</th>
+            <th class="py-2 px-3">Rating</th>
+            <th class="py-2 px-3">Serves</th>
+          </tr>
+        </thead>
+        <tbody id="tbody" class="text-sm"></tbody>
+      </table>
+      <div id="empty" class="hidden p-6 text-center text-gray-500">No results found.</div>
+    </div>
+
+    <div class="flex justify-between items-center mt-4">
+      <button id="prev" class="px-4 py-2 rounded-xl border">Prev</button>
+      <div id="pageInfo"></div>
+      <button id="next" class="px-4 py-2 rounded-xl border">Next</button>
+    </div>
+  </div>
+
+  <!-- Drawer -->
+  <div id="drawer" class="fixed inset-0 bg-black/50 hidden items-start justify-end">
+    <div class="bg-white w-full max-w-2xl h-full overflow-y-auto p-6">
+      <button id="closeDrawer" class="mb-4 border px-3 py-1 rounded-lg">Close</button>
+      <div id="details"></div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
